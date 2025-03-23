@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 // Add this type definition at the top of your file, after the imports
 type Video = {
@@ -52,10 +53,10 @@ function App() {
   const videos: Video[] = [
     {
       id: '1',
-      title: 'Hasthavani Demo at T-Works',
-      url: 'https://www.youtube.com/embed/VIDEO_ID_1',
-      thumbnail: '/path-to/video-thumbnail-1.jpg',
-      description: 'Watch how Hasthavani translates sign language in real-time during our demonstration at T-Works.'
+      title: 'Hasthavani Information from Gatik Jr College',
+      url: 'https://youtube.com/shorts/Li8zcr6F47c?si=Ub5BjDHRGxmNxiG2',
+      thumbnail: 'https://res.cloudinary.com/dhvtvqbnn/image/upload/v1742727605/SCR-20250323-onkp_ygdoyb.jpg',
+      description: 'Watch how Hasthavani was built.'
     },
     {
       id: '2',
@@ -372,45 +373,44 @@ function App() {
       </section>
 
       <section id="media" className="media">
-        <div className="media-container">
-          <h2>Media</h2>
-          
-          {selectedVideo ? (
-            <div className="video-player">
-              <button className="back-button" onClick={() => setSelectedVideo(null)}>
-                ← Back to videos
-              </button>
-              <div className="video-wrapper">
-                <iframe
-                  src={selectedVideo.url}
-                  title={selectedVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <h3>{selectedVideo.title}</h3>
-              <p>{selectedVideo.description}</p>
-            </div>
-          ) : (
-            <div className="videos-grid">
-              {videos.map((video) => (
-                <div 
-                  key={video.id} 
-                  className="video-card"
-                  onClick={() => setSelectedVideo(video)}
-                >
-                  <div className="video-thumbnail">
-                    <img src={video.thumbnail} alt={video.title} />
-                    <div className="play-button">▶</div>
-                  </div>
-                  <h3>{video.title}</h3>
-                  <p>{video.description}</p>
-                </div>
-              ))}
-            </div>
-          )}
+  <div className="media-container">
+    <h2>Media</h2>
+    
+    <div className="videos-grid">
+      {videos.map((video) => (
+        <div key={video.id} className="video-card">
+          <div className="video-thumbnail">
+            <img src={video.thumbnail} alt={video.title} />
+          </div>
+          <div className="video-info">
+            <h3>{video.title}</h3>
+            <p>{video.description}</p>
+            <a 
+              href={video.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="watch-button"
+            >
+              {video.platform === 'youtube' ? (
+                <>
+                  <span className="platform-icon">▶</span> Watch on YouTube
+                </>
+              ) : video.platform === 'instagram' ? (
+                <>
+                  <span className="platform-icon">📱</span> View on Instagram
+                </>
+              ) : (
+                <>
+                  <span className="platform-icon">▶</span> Watch Video
+                </>
+              )}
+            </a>
+          </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       
     </div>

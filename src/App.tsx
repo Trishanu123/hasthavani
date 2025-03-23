@@ -135,7 +135,7 @@ function App() {
         </div>
 
         <div className="features-image">
-          <img src="/path-to-product-image.jpg" alt="Hasthavani device" />
+          <img src="https://res.cloudinary.com/dhvtvqbnn/image/upload/v1742727605/SCR-20250323-onkp_ygdoyb.jpg" alt="Hasthavani device" />
         </div>
       </section>
 

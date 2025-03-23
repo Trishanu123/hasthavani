@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+
+
 
 // Add this type definition at the top of your file, after the imports
 type Video = {
@@ -15,7 +16,7 @@ type Video = {
 function App() {
   const [isVisible, setIsVisible] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
+  
 
   const slides = [
     {
@@ -375,42 +376,35 @@ function App() {
       <section id="media" className="media">
   <div className="media-container">
     <h2>Media</h2>
-    
+
     <div className="videos-grid">
-      {videos.map((video) => (
-        <div key={video.id} className="video-card">
-          <div className="video-thumbnail">
-            <img src={video.thumbnail} alt={video.title} />
+      {videos && videos.length > 0 ? (
+        videos.map((video) => (
+          <div key={video.id} className="video-card">
+            <div className="video-thumbnail">
+              <img src={video.thumbnail} alt={video.title} />
+            </div>
+            <div className="video-info">
+              <h3>{video.title}</h3>
+              <p>{video.description}</p>
+              <a 
+                href={video.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="watch-button"
+              >
+                Watch Video
+              </a>
+            </div>
           </div>
-          <div className="video-info">
-            <h3>{video.title}</h3>
-            <p>{video.description}</p>
-            <a 
-              href={video.url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="watch-button"
-            >
-              {video.platform === 'youtube' ? (
-                <>
-                  <span className="platform-icon">▶</span> Watch on YouTube
-                </>
-              ) : video.platform === 'instagram' ? (
-                <>
-                  <span className="platform-icon">📱</span> View on Instagram
-                </>
-              ) : (
-                <>
-                  <span className="platform-icon">▶</span> Watch Video
-                </>
-              )}
-            </a>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No videos available.</p>
+      )}
     </div>
   </div>
 </section>
+
 
       
     </div>
